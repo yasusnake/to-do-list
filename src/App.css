@@ -1,0 +1,70 @@
+.App {
+  
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #870505;
+  padding: 20px;
+  color: #fff;
+  text-align: center;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+.form .col-md-6 {
+  padding: 0;
+  margin: 0;
+  margin: 20px 0 0;
+}
+.data {
+  height: 40px;
+}
+.submit {
+  background: #c45b00;
+  color: #fff;
+  padding: 10px 0;
+  margin-bottom: 20px;
+}
+.submit:hover {
+  background: #a54d01;
+}
+
+.Tasks {
+  margin: 0;
+  list-style: none;
+  padding: 0;
+}
+.Tasks li:nth-child(even) {
+  background: #e8e8e8;
+}
+.Task {
+  border-bottom: 1px #ccc solid;
+  padding: 15px 0;
+}
+.Task h3 {
+  font-size: 1.2em;
+}
+
+.check {
+  text-decoration: line-through;
+  background: #ffb2b2;
+}
+.check .btn {
+  text-decoration: none !important;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
