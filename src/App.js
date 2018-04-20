@@ -1,23 +1,17 @@
 import React, { Component } from 'react';
 import './App.css';
-import _ from 'lodash';
+import { inject, observer } from 'mobx-react';
+import PropTypes from 'prop-types';
 
 // Components
 import Tasks from './components/Tasks';
 import AddTask from './components/AddTask';
 
+@inject('TasksStore')
+@observer
 class App extends Component {
-  constructor (props) {
-    super(props);
-    this.state = {
-      tasks : [
-        {title : 'Task 1', description : 'Description 1', done : false},
-        {title : 'Task 2', description : 'Description 2', done : false},
-      ],
-    };
-  }
-
   render () {
+    console.log(this.props.TasksStore);
     return (
       <div className="App">
         <header className="App-header">
@@ -26,7 +20,7 @@ class App extends Component {
         <AddTask createTask={this.handleSubmit} />
         <div className="container">
           <Tasks { ...{
-            data             : this.state.tasks,
+            data             : this.props.TasksStore.tasks,
             handleDeleteTask : this.handleDeleteTask,
             handleUpdateTask : this.handleUpdateTask,
           }}/>
@@ -36,25 +30,20 @@ class App extends Component {
   }
 
   handleSubmit = (newTask) => {
-    const tasks = this.state.tasks;
-    tasks.push(newTask);
-    this.setState({tasks});
+    this.props.TasksStore.addTask(newTask);
   }
 
   handleUpdateTask = (updateTask) => {
-    const tasks = this.state.tasks;
-    const indexToReplace = _.findIndex(tasks, {title : updateTask});
-    tasks[indexToReplace].done = !tasks[indexToReplace].done;
-    this.setState({tasks});
+    this.props.TasksStore.updateTask(updateTask);
   }
 
   handleDeleteTask = (removeTask) => {
-    this.setState((prevState) => (
-      {
-        tasks : prevState.tasks.filter((tasks) => removeTask  !== tasks.title),
-      }
-    ));
+    this.props.TasksStore.deleteTask(removeTask);
   }
 }
+
+App.propTypes = {
+  TasksStore : PropTypes.object,
+};
 
 export default App;

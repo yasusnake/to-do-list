@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
+import { observer } from 'mobx-react';
 
 // Componente
 import Task from '../Task';
 
+@observer
 class Tasks extends Component {
   render () {
     return (
