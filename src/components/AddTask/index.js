@@ -6,9 +6,8 @@ class AddTask extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      titleValue       : '',
-      descriptionValue : '',
-      done             : false,
+      title       : '',
+      description : '',
     };
   }
 
@@ -18,11 +17,11 @@ class AddTask extends Component {
         <form className="row form">
           <div className="col-md-6">
             <label>Task</label>
-            <input className="col-md-12 form-control" name="titleValue" type="text" value={this.state.titleValue} onChange={this.handleChange} />
+            <input className="col-md-12 form-control" name="title" type="text" value={this.state.title} onChange={this.handleChange} />
           </div>
           <div className="col-md-6">
             <label>Description</label>
-            <input className="col-md-12 form-control" name="descriptionValue" type="text" value={this.state.descriptionValue} onChange={this.handleChange} />
+            <input className="col-md-12 form-control" name="description" type="text" value={this.state.description} onChange={this.handleChange} />
           </div>
           <button type="button" className="col-md-12 btn btn-primary btn-lg btn-block" onClick={this.createTask}>Add Task</button>
         </form>
@@ -37,24 +36,25 @@ class AddTask extends Component {
   }
 
   createTask = () => {
-    if (this.state.title === '' || this.state.descriptionValue === '') {
+    if (this.state.title === '' || this.state.description === '') {
+      /* eslint-disable */
       alert('You need to write in both fields!');
+      /* eslint-enable */
     } else {
       const tempObjTask = {
-        title       : this.state.titleValue,
-        description : this.state.descriptionValue,
-        done        : this.state.done,
+        title       : this.state.title,
+        description : this.state.description,
       };
 
       this.props.createTask(tempObjTask);
 
       this.setState({
-        titleValue       : '',
-        descriptionValue : '',
+        title       : '',
+        description : '',
       });
 
       swal('Good job!', 'You clicked the button!', 'success', {
-        button : 'Aww yiss!',
+        button : 'Okay',
       });
     }
   }
